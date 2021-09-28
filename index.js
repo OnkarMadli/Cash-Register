@@ -9,15 +9,20 @@ const availableNotes = [2000,500,100,20,10,5,1];
 
 checkButton.addEventListener("click", () => {
     message.getElementsByClassName.display = "none";
-    if(billAmount.value>0){
-        if(cashGiven >= billAmount){
-            const amountToBeReturn = cashGiven.value - billAmount.value;
-            calculateChange(amountToBeReturn);
+
+    if(isNaN(billAmount.value) || isNaN(cashGiven.value)){
+        showMessage("Only numeric values are accepted")
+    } else{
+        if(billAmount.value>0){
+            if(cashGiven >= billAmount){
+                const amountToBeReturn = cashGiven.value - billAmount.value;
+                calculateChange(amountToBeReturn);
+            } else {
+                showMessage("The Cash provided must be greater than or equal to the bill amount");
+            }
         } else {
-            showMessage("The Cash provided must be greater than or equal to the bill amount");
+            showMessage("Invalid Bill Amount")
         }
-    } else {
-        showMessage("Invalid Bill Amount")
     }
 });
 
